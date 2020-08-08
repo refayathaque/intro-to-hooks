@@ -10,12 +10,17 @@ export default () => {
       dispatch({ type: 'FETCH_INIT', payload: userId });
       try {
         const data = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
-        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+        if (data.ok) {
+          let json = await data.json();
+          dispatch({ type: 'FETCH_SUCCESS', payload: json });
+        }
       } catch (error) {
         dispatch({ type: 'FETCH_FAILURE', payload: userId });
       }
     }
+
     fetchData();
   }, [ userId ]);
+
   return [ setUserId ]
 }

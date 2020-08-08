@@ -7,8 +7,8 @@ import { PostsContextProvider } from '../Hooks/PostsContext';
 export default () => {
   return (
     <Fragment>
-      <Input />
       <PostsContextProvider>
+        <Input />
         <Posts />
         <PostsSibling />
       </PostsContextProvider>

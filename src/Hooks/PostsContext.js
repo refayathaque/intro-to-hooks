@@ -1,11 +1,8 @@
 import React, { useReducer, createContext } from "react";
 
-export const PostsContext = createContext();
-
-const initialState = { isLoading: false, isError: false, request: null }
+export const PostsContext = createContext([ {}, () => {} ]);
 
 const reducer = (state, action) => {
-  console.log(action)
   switch (action.type) {
     case 'FETCH_INIT':
       return { ...state, isLoading: true, isError: false, request: action.payload };
@@ -19,12 +16,14 @@ const reducer = (state, action) => {
   }
 };
 
+const initialState = { isLoading: false, isError: false, request: null }
+
 export const PostsContextProvider = props => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [ state, dispatch ] = useReducer(reducer, initialState);
 
   return (
-    <PostsContext.Provider value={[state, dispatch]}>
-      {props.children}
+    <PostsContext.Provider value={[ state, dispatch ]}>
+      { props.children }
     </PostsContext.Provider>
   );
 };
