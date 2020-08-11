@@ -3,11 +3,28 @@ import { PostsContext } from '../Hooks/PostsContext'
 
 export default () => {
   const [ state ] = useContext(PostsContext);
-  console.log(state)
+
+  const renderFetchedData = () => {
+    return (
+      <ul>
+        {state.data.map((post, index) => {
+          return <li key={index}>{post.body}</li>
+        })}  
+      </ul>
+    )
+  }
+
+  const renderInitialState = () => {
+    return (
+      <div>No data requested</div>
+    )
+  }
 
   return (
     <Fragment>
       <h3>Posts component</h3>
+      <h4>Post bodies only</h4>
+      {state.request ? renderFetchedData() : renderInitialState()}
     </Fragment>
   )
 }

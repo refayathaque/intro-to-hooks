@@ -3,7 +3,7 @@ import { PostsContext } from './PostsContext'
 
 export default () => {
   const [ state, dispatch ] = useContext(PostsContext);
-  const [ userId, setUserId ] = useState(0)
+  const [ userId, setUserId ] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
