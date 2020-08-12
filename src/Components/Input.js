@@ -1,21 +1,28 @@
 import React, { Fragment } from 'react'
 import useFetchPosts from '../Hooks/useFetchPosts';
+import useFetchComments from '../Hooks/useFetchComments';
 
 export default () => {
-  const [ setUserId ] = useFetchPosts();
+  const [ setUserIdPosts ] = useFetchPosts();
+  const [ setPostIdComments ] = useFetchComments();
+
+  const setUserIdInCustomHooks = (id) => {
+    setUserIdPosts(id)
+    setPostIdComments(id)
+  }
 
   const renderDropdownValues = () => {
-    const userIds = [ 'None selected', 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10 ];
-    return userIds.map((userId, index) =>
-      <option key={ index } value={ userId }>{ userId }</option>
+    const ids = [ 'None selected', 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10 ];
+    return ids.map((id, index) =>
+      <option key={ index } value={ id }>{ id }</option>
     );
   }
 
   return (
     <Fragment>
       <h3>Input component</h3>
-      <label>Pick a userId </label>
-      <select onChange={({ target }) => setUserId(target.value)}>
+      <label>Select userId (posts) / postId (comments) </label>
+      <select onChange={({ target }) => setUserIdInCustomHooks(target.value)}>
         { renderDropdownValues() }
       </select>
     </Fragment>

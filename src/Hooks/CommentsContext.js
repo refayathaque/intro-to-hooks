@@ -1,6 +1,6 @@
 import React, { useReducer, createContext } from "react";
 
-export const PostsContext = createContext([ {}, () => {} ]);
+export const CommentsContext = createContext([ {}, () => {} ]);
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -18,12 +18,12 @@ const reducer = (state, action) => {
 
 const initialState = { isLoading: false, isError: false, request: null }
 
-export const PostsContextProvider = props => {
+export const CommentsContextProvider = props => {
   const [ state, dispatch ] = useReducer(reducer, initialState);
 
   return (
-    <PostsContext.Provider value={[ state, dispatch ]}>
+    <CommentsContext.Provider value={[ state, dispatch ]}>
       { props.children }
-    </PostsContext.Provider>
+    </CommentsContext.Provider>
   );
 };

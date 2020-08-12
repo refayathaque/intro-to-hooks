@@ -1,30 +1,28 @@
 import React, { Fragment, useContext } from 'react'
 import { PostsContext } from '../Hooks/PostsContext'
 
-export default () => {
+export default ({listType='bodies', header=''}) => {
   const [ state ] = useContext(PostsContext);
 
   const renderFetchedData = () => {
     return (
       <ul>
         {state.data.map((post, index) => {
-          return <li key={index}>{post.body}</li>
-        })}  
+          if (listType === 'title') {
+            return <li key={index}>{post.title}</li>
+          } else {
+            return <li key={index}>{post.body}</li>
+          }
+        })}
       </ul>
-    )
-  }
-
-  const renderInitialState = () => {
-    return (
-      <div>No data requested</div>
     )
   }
 
   return (
     <Fragment>
-      <h3>Posts component</h3>
-      <h4>Post bodies only</h4>
-      {state.request ? renderFetchedData() : renderInitialState()}
+      <h3>Posts reusable component {header}</h3>
+      <h4>Post {listType} only</h4>
+      {state.request ? renderFetchedData() : <div>No data requested</div>}
     </Fragment>
   )
 }
