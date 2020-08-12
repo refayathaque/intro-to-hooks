@@ -5,17 +5,21 @@ export default ({listType='bodies', header=''}) => {
   const [ state ] = useContext(PostsContext);
 
   const renderFetchedData = () => {
-    return (
-      <ul>
-        {state.data.map((post, index) => {
-          if (listType === 'title') {
-            return <li key={index}>{post.title}</li>
-          } else {
-            return <li key={index}>{post.body}</li>
-          }
-        })}
-      </ul>
-    )
+    if (state.isLoading) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <ul>
+          {state.data.map((post, index) => {
+            if (listType === 'title') {
+              return <li key={index}>{post.title}</li>
+            } else {
+              return <li key={index}>{post.body}</li>
+            }
+          })}
+        </ul>
+      )
+    }
   }
 
   return (

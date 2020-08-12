@@ -11,7 +11,7 @@ export default () => {
     <Fragment>
       <CommentsContextProvider>
         <Comments />
-        {/* ^ won't access to posts */}
+        {/* ^ won't have access to posts */}
         <PostsContextProvider>
           <Input />
           <UserId />
