@@ -10,13 +10,17 @@ export default function Comments() {
   // Will log an empty object
 
   const renderFetchedData = () => {
-    return (
-      <ul>
-      {state.data.map((comment, index) => {
-        return <li key={index}>{comment.body}<ul><li>{comment.email}</li></ul></li>
-      })}
-    </ul>
-    )
+    if (state.isLoading) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <ul>
+        {state.data.map((comment, index) => {
+          return <li key={index}>{comment.body}<ul><li>{comment.email}</li></ul></li>
+        })}
+      </ul>
+      )
+    }
   }
 
   return (
