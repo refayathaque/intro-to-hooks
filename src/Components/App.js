@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import '../styles.css';
 import Input from './Input';
 import Posts from './Posts';
 import Comments from './Comments';
@@ -8,17 +9,25 @@ import { CommentsContextProvider } from '../Hooks/CommentsContext';
 
 export default () => {
   return (
-    <Fragment>
+    <div className="commentsContextProvider">
       <CommentsContextProvider>
         <Comments />
         {/* ^ won't have access to posts */}
-        <PostsContextProvider>
-          <Input />
-          <UserId />
-          <Posts />
-          <Posts listType='titles' header='(Sibling)' />
-        </PostsContextProvider>
+        <div className="postsContextProvider">
+          <PostsContextProvider>
+            <Input />
+            <div className="siblings">
+              <UserId />
+            </div>
+            <div className="siblings">
+              <Posts />
+            </div>
+            <div className="siblings">
+              <Posts listType='titles' header='(Sibling)' />
+            </div>
+          </PostsContextProvider>
+        </div>
       </CommentsContextProvider>
-    </Fragment>
+    </div>
   );
 }
