@@ -11,18 +11,20 @@ export default () => {
   return (
     <div className="commentsContextProvider">
       <CommentsContextProvider>
-        <Comments />
-        {/* ^ won't have access to posts */}
+        <div className="comments">
+          <Comments />
+        </div>
+        {/* ^ won't have access to posts bc <PostsContextProvider> is not its parent  */}
         <div className="postsContextProvider">
           <PostsContextProvider>
             <Input />
-            <div className="siblings">
+            <div className="postsSiblings">
               <UserId />
             </div>
-            <div className="siblings">
+            <div className="postsSiblings">
               <Posts />
             </div>
-            <div className="siblings">
+            <div className="postsSiblings">
               <Posts listType='titles' header='(Sibling)' />
             </div>
           </PostsContextProvider>

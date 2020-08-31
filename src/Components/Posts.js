@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from 'react'
 import { PostsContext } from '../Hooks/PostsContext'
 
-export default ({listType='bodies', header=''}) => {
+export default ({ listType='bodies', header='' }) => {
   const [ state ] = useContext(PostsContext);
 
   const renderFetchedData = () => {

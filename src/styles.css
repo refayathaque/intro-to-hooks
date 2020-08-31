@@ -1,13 +1,19 @@
 .commentsContextProvider {
   border: 2px dotted blue;
+  margin: 0em 6em 0em 6em;
 }
 
 .postsContextProvider {
   border: 2px dotted green;
-  margin: 8px;
+  margin: 0.75em;
 }
 
-.siblings {
+.postsSiblings {
   border: 1px solid red;
-  margin: 8px;
+  margin: 0.75em;
+}
+
+.comments {
+  border: 1px solid pink;
+  margin: 0.75em;
 }
