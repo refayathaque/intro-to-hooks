@@ -3,6 +3,7 @@ import React, { useReducer, createContext } from "react";
 export const PostsContext = createContext([ {}, () => {} ]);
 
 const reducer = (state, action) => {
+  console.log(PostsContext)
   switch (action.type) {
     case 'FETCH_INIT':
       return { ...state, isLoading: true, isError: false, request: action.payload };
